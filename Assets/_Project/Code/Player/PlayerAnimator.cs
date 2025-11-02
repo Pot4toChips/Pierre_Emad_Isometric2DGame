@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// TASK 2 WITH  BONUSES DONEEEEEE
+
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator _animator;
