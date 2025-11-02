@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      template-front-sleep-1 2_0: -9028506710699080015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      template-rear-stand_0: -2103386703780018890
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
