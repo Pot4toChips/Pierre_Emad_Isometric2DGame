@@ -16,6 +16,9 @@ public class PlayerIdleState : IState
         // Stop Player Movement.
         _stateMachine.PlayerController.PlayerMovement.SetIdleMovement();
         _stateMachine.PlayerController.PlayerAnimator.Play("Idle");
+        // Getting the last move direction before idle.
+        // to keep facing the same direction.
+        _stateMachine.PlayerController.PlayerAnimator.SetFload("MoveY", InputManager.Instance.LastMoveValue.y);
     }
 
     public void FixedExecute()
@@ -28,7 +31,7 @@ public class PlayerIdleState : IState
     {
         // ----- Transitions -----
         // Check the sqrMagnitude instead of Magnitude for better performance.
-        if (InputManager.Instance.MoveValue.sqrMagnitude > 0.1f)
+        if (InputManager.Instance.MoveValue.sqrMagnitude > 0.01f)
         {
             _stateMachine.ChangeState(_stateMachine.WalkState);
         }

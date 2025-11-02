@@ -24,13 +24,15 @@ public class PlayerWalkState : IState
         _stateMachine.PlayerController.PlayerMovement.SetWalkMovement(InputManager.Instance.MoveValue);
         // Apply the movement.
         _stateMachine.PlayerController.PlayerMovement.Move();
+        // Update sprite animation.
+        _stateMachine.PlayerController.PlayerAnimator.SetFload("MoveY", InputManager.Instance.MoveValue.y);
     }
 
     public void Execute()
     {
         // ----- Transitions -----
         // Check the sqrMagnitude instead of Magnitude for better performance.
-        if (InputManager.Instance.MoveValue.sqrMagnitude < 0.1f)
+        if (InputManager.Instance.MoveValue.sqrMagnitude < 0.01f)
         {
             _stateMachine.ChangeState(_stateMachine.IdleState);
         }

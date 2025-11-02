@@ -14,15 +14,20 @@ public class PlayerAnimator : MonoBehaviour
     private void Update()
     {
         // Flip the sprite based on the X axis input.
-        _renderer.flipX = InputManager.Instance.MoveValue.x < 0;
+        // If no input, just keep the last frame flip state.
+        if (InputManager.Instance.MoveValue.sqrMagnitude < 0.01f)
+            _renderer.flipX = InputManager.Instance.LastMoveValue.x < 0;
+        else
+            _renderer.flipX = InputManager.Instance.MoveValue.x < 0;
     }
 
     public void Play(string animationName)
     {
-        if (InputManager.Instance.MoveValue.y > 0) animationName += "Up";
-        else animationName += "Down";
-        
         _animator.Play(animationName);
+    }
+    public void SetFload(string name, float value)
+    {
+        _animator.SetFloat(name, value);
     }
 
 }

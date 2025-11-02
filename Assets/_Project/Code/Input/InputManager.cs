@@ -9,7 +9,8 @@ public class InputManager : MonoBehaviour
     [Header("Input Buffering")]
     [SerializeField] private float _inputBufferTime = 0.2f;
 
-    public Vector2 MoveValue => _inputActions.Player.Move.ReadValue<Vector2>();
+    public Vector2 MoveValue => _moveDirection;
+    public Vector2 LastMoveValue => _lastMoveDirection;
     public Vector2 LookValue => _inputActions.Player.Look.ReadValue<Vector2>();
     public bool RunIsPressing =>
         _inputActions.Player.Run.IsPressed();
@@ -21,6 +22,8 @@ public class InputManager : MonoBehaviour
     private InputActionsMap _inputActions;
     private float _attackBufferTimestamp  = -1000; // initial dummy value away of 0
     private float _dodgeBufferTimestamp  = -1000; // initial dummy value away of 0
+    private Vector2 _moveDirection;
+    private Vector2 _lastMoveDirection;
 
     private void Awake()
     {
@@ -39,13 +42,19 @@ public class InputManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        // Register events to process the input buffer technique.
+        // ----- Register Event -----
+        // Move Action Event
+        _inputActions.Player.Move.performed += MovePerformed;
+        _inputActions.Player.Move.canceled += MovePerformed;
+        // process the input buffer technique.
         _inputActions.Player.Attack.performed += AttackPerformed;
         _inputActions.Player.Dodge.performed += DodgePerformed;
     }
     private void OnDisable()
     {
         // Unregister events to avoid memory leaks.
+        _inputActions.Player.Move.performed -= MovePerformed;
+        _inputActions.Player.Move.canceled -= MovePerformed;
         _inputActions.Player.Attack.performed -= AttackPerformed;
         _inputActions.Player.Dodge.performed -= DodgePerformed;
     }
@@ -63,6 +72,12 @@ public class InputManager : MonoBehaviour
     public void ResetDodgeTimestamp()
     {
         _dodgeBufferTimestamp = -1000;
+    }
+
+    private void MovePerformed(InputAction.CallbackContext obj)
+    {
+        _lastMoveDirection = _moveDirection;
+        _moveDirection = obj.ReadValue<Vector2>();
     }
 
     private void AttackPerformed(InputAction.CallbackContext obj)
