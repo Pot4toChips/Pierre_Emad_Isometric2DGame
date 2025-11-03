@@ -1,49 +1,43 @@
 using UnityEngine;
-using UnityEngine.AI;
-using NavMeshPlus.Extensions;
 
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(AgentOverride2d))]
+
 [RequireComponent(typeof(EnemyMovement))]
 [RequireComponent(typeof(EnemySight))]
+[RequireComponent(typeof(EnemyAnimator))]
 public class EnemyController : MonoBehaviour
 {
-    // --- Core Components ---
-    public NavMeshAgent Agent { get; private set; }
-    public Animator Animator { get; private set; }
-    public SpriteRenderer SpriteRenderer { get; private set; }
-    public EnemyMovement Movement { get; private set; }
-    public EnemySight Sight { get; private set; }
-
-    // --- Target ---
-    public Transform PlayerTarget { get; private set; }
-
     // --- AI Settings (for states to read) ---
     [Header("AI Settings")]
     [Tooltip("How far the AI can 'see' the player.")]
-    public float DetectionRange = 10f;
+    [SerializeField] private float _detectionRange = 10f;
     [Tooltip("How close the AI needs to be to attack.")]
-    public float AttackRange = 1.5f;
+    [SerializeField] private float _attackRange = 1.5f;
 
     [Header("Patrol Settings")]
-    public Transform PatrolPointA;
-    public Transform PatrolPointB;
     [Tooltip("How long to wait at each patrol point.")]
-    public float PatrolWaitTime = 2f;
+    [SerializeField] private float _patrolWaitTime = 2f;
 
     [Header("Attack Settings")]
     [Tooltip("Time between attacks")]
-    public float AttackRate = 1.0f;
+    [SerializeField] private float _attackRate = 1.0f;
+
+    // --- Core Components ---
+    public EnemyAnimator EnemyAnimator { get; private set; }
+    public EnemyMovement Movement { get; private set; }
+    public EnemySight Sight { get; private set; }
+
+    // --- Settings ---
+    public Transform PlayerTarget { get; private set; }
+    public float DetectionRange => _detectionRange;
+    public float AttackRange => _attackRange;
+    public float PatrolWaitTime => _patrolWaitTime;
+    public float AttackRate => _attackRate;
 
     private void Awake()
     {
-        Agent = GetComponent<NavMeshAgent>();
         Movement = GetComponent<EnemyMovement>();
         Sight = GetComponent<EnemySight>();
-
-        // These might be on child objects
-        Animator = GetComponentInChildren<Animator>();
-        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        EnemyAnimator = GetComponent<EnemyAnimator>();
 
         // Find the player in the scene
         PlayerTarget = GameObject.FindGameObjectWithTag("Player")?.transform;

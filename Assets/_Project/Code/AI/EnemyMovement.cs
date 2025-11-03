@@ -1,8 +1,10 @@
+using NavMeshPlus.Extensions;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(AgentOverride2d))]
 public class EnemyMovement : MonoBehaviour
 {
     private NavMeshAgent _agent;
