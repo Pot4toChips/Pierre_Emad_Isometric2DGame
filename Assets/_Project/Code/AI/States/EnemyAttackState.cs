@@ -16,7 +16,7 @@ public class EnemyAttackState : IState
     public void Enter()
     {
         // --- Bonus Point: Visual Feedback ---
-        _controller.SpriteRenderer.color = Color.red;
+        _controller.EnemyAnimator.UpdateColor(Color.red);
 
         // Stop moving to perform the attack
         _controller.Movement.Stop();

@@ -14,7 +14,7 @@ public class EnemyChaseState : IState
     public void Enter()
     {
         // --- Bonus Point: Visual Feedback ---
-        _controller.SpriteRenderer.color = Color.yellow;
+        _controller.EnemyAnimator.UpdateColor(Color.yellow);
     }
 
     public void FixedExecute()
@@ -28,6 +28,8 @@ public class EnemyChaseState : IState
 
     public void Execute()
     {
+        _controller.EnemyAnimator.UpdateSpriteToTarget(_controller.PlayerTarget);
+
         // --- Transition to Attack ---
         if (_controller.Sight.IsPlayerInAttackRange)
         {

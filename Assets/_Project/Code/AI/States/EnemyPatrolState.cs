@@ -5,7 +5,7 @@ public class EnemyPatrolState : IState
     private readonly EnemyStateMachine _stateMachine;
     private readonly EnemyController _controller;
 
-    private Transform _currentTarget;
+    private PatrolPointsManager.PatrolPoint _currentTarget;
 
     public EnemyPatrolState(EnemyStateMachine stateMachine)
     {
@@ -16,25 +16,27 @@ public class EnemyPatrolState : IState
     public void Enter()
     {
         // --- Bonus Point: Visual Feedback ---
-        _controller.SpriteRenderer.color = Color.green;
+        _controller.EnemyAnimator.UpdateColor(Color.green);
 
-        // Choose which patrol point to go to
-        if (_currentTarget == null || _currentTarget == _controller.PatrolPointB)
+        // Get the random point from the controller.
+        _currentTarget = PatrolPointsManager.Instance.GetRandomPatrolPoint();
+
+        // Check the case of no available point returned.
+        if (_currentTarget.transform == null)
         {
-            _currentTarget = _controller.PatrolPointA;
-        }
-        else
-        {
-            _currentTarget = _controller.PatrolPointB;
+            // Get back to idle (wait a while then check again)
+            _stateMachine.ChangeState(_stateMachine.IdleState);
         }
 
-        _controller.Movement.MoveTo(_currentTarget.position);
+        _controller.Movement.MoveTo(_currentTarget.transform.position);
     }
 
     public void FixedExecute() { }
 
     public void Execute()
     {
+        _controller.EnemyAnimator.UpdateSpriteToTarget(_currentTarget.transform);
+
         // --- Transition to Chase ---
         if (_controller.Sight.CanSeePlayer)
         {
@@ -47,5 +49,11 @@ public class EnemyPatrolState : IState
         }
     }
 
-    public void Exit() { }
+    public void Exit() 
+    {
+        // Check the case of no available point returned.
+        if (_currentTarget.transform == null) return;
+        
+        PatrolPointsManager.Instance.FreeExitedPoint(_currentTarget, _controller.PatrolWaitTime);
+    }
 }

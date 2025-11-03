@@ -19,7 +19,7 @@ public class EnemyIdleState : IState
         _timer = 0f;
 
         // --- Bonus Point: Visual Feedback ---
-        _controller.SpriteRenderer.color = Color.white;
+        _controller.EnemyAnimator.UpdateColor(Color.white);
     }
 
     public void FixedExecute() { }
