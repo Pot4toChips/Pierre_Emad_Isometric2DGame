@@ -35,7 +35,10 @@ public class EnemyAttackState : IState
         {
             // --- PERFORM THE ATTACK ---
             Debug.Log("ENEMY is ATTACKING!");
-            // Call The Combat System.
+            if (_controller.PlayerTarget.TryGetComponent<Health>(out Health playerHealth))
+            {
+                playerHealth.TakeDamage(10); // Deal 10 damage
+            }
 
             // --- Transition out of Attack ---
             // After attacking, check if player is still in range

@@ -28,6 +28,11 @@ public class PlayerRunState : IState
 
     public void Execute()
     {
+        if (InputManager.Instance.AttackPressed)
+        {
+            _stateMachine.PlayerController.PlayerCombat.PerformAttack();
+        }
+
         // ----- Transitions -----
         // Check the sqrMagnitude instead of Magnitude for better performance.
         if (InputManager.Instance.MoveValue.sqrMagnitude < 0.01f)

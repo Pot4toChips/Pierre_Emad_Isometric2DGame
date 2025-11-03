@@ -42,6 +42,11 @@ public class EnemyStateMachine : MonoBehaviour
         _currentState?.Execute();
     }
 
+    private void OnDestroy()
+    {
+        _currentState?.Exit();
+    }
+
     public void ChangeState(IState newState)
     {
         if (newState == null || newState == _currentState) return;
