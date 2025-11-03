@@ -25,7 +25,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         _animator.Play(animationName);
     }
-    public void SetFload(string name, float value)
+    public void SetFloat(string name, float value)
     {
         _animator.SetFloat(name, value);
     }

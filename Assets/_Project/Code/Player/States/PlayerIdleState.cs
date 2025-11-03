@@ -11,14 +11,12 @@ public class PlayerIdleState : IState
 
     public void Enter() 
     {
-        Debug.Log("[Idle State]: Entered");
-
         // Stop Player Movement.
         _stateMachine.PlayerController.PlayerMovement.SetIdleMovement();
         _stateMachine.PlayerController.PlayerAnimator.Play("Idle");
         // Getting the last move direction before idle.
         // to keep facing the same direction.
-        _stateMachine.PlayerController.PlayerAnimator.SetFload("MoveY", InputManager.Instance.LastMoveValue.y);
+        _stateMachine.PlayerController.PlayerAnimator.SetFloat("MoveY", InputManager.Instance.LastMoveValue.y);
     }
 
     public void FixedExecute()

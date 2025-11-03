@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      template-front-rifle_0: 2301010298041048485
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

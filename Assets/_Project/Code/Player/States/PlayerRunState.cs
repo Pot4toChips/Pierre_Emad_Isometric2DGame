@@ -11,7 +11,6 @@ public class PlayerRunState : IState
 
     public void Enter()
     {
-        Debug.Log("[Run State]: Entered");
 
     }
 
@@ -24,7 +23,7 @@ public class PlayerRunState : IState
         // Apply the movement.
         _stateMachine.PlayerController.PlayerMovement.Move();
         // Update sprite animation.
-        _stateMachine.PlayerController.PlayerAnimator.SetFload("MoveY", InputManager.Instance.MoveValue.y);
+        _stateMachine.PlayerController.PlayerAnimator.SetFloat("MoveY", InputManager.Instance.MoveValue.y);
     }
 
     public void Execute()

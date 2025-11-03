@@ -16,8 +16,6 @@ public class PlayerDodgeState : IState
 
     public void Enter()
     {
-        Debug.Log("[Dodge State]: Entered");
-
         _elapsedTime = 0;
         // Store the dodge direction to move along it.
         _dodgeDirection = InputManager.Instance.MoveValue;
