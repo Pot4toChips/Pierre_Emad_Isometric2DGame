@@ -124,11 +124,12 @@ GameObject:
   - component: {fileID: 1442499592111453100}
   - component: {fileID: 6504783813910737864}
   - component: {fileID: 731646126744090941}
+  - component: {fileID: 5622495457194828571}
   - component: {fileID: 7673727077604242154}
   - component: {fileID: 274796218404733474}
   - component: {fileID: 8733322686804947352}
   - component: {fileID: 1782546677330018612}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,6 +266,23 @@ MonoBehaviour:
   _attackRange: 1.5
   _patrolWaitTime: 2
   _attackRate: 1
+--- !u!114 &5622495457194828571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585082542670679911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3665682288f404a9bdd04e3018f8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  flashCount: 2
+  flashDuration: 0.1
+  punchScaleAmount: 1.05
 --- !u!114 &7673727077604242154
 MonoBehaviour:
   m_ObjectHideFlags: 0

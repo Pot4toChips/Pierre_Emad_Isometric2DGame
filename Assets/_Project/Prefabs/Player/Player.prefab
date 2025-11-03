@@ -48,6 +48,8 @@ GameObject:
   - component: {fileID: 5301901765876949816}
   - component: {fileID: 1618631587903580018}
   - component: {fileID: 4476328514395453963}
+  - component: {fileID: 4219256784143398970}
+  - component: {fileID: 4044818503982865158}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -198,6 +200,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b552166a6b9fa408579dddfcc5d8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4219256784143398970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745716790301965184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba5554e587093846af0bb1953d4eeff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 25
+  attackRangeOffset: 1
+  attackRadius: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &4044818503982865158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745716790301965184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3665682288f404a9bdd04e3018f8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  flashCount: 2
+  flashDuration: 0.1
+  punchScaleAmount: 1.05
 --- !u!1 &6782835853020386680
 GameObject:
   m_ObjectHideFlags: 0

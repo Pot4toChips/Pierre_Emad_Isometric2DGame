@@ -32,6 +32,9 @@ public class EnemyMovement : MonoBehaviour
 
     public void Stop()
     {
+        // if not active.
+        if (!_agent.isActiveAndEnabled) return;
+
         _agent.isStopped = true;
         _agent.ResetPath();
     }
